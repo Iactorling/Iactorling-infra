@@ -1,18 +1,6 @@
-ARG NODE_VER=10.16
-ARG NODE_PORT=8080
+FROM nginx:alpine
 
-FROM node:${NODE_VER}
+COPY config/nginx.conf /etc/nginx/conf.d/default.conf
 
-
-
-
-WORKDIR /usr/src/app
-
-COPY  App/package.json App/package-lock.json ./
-
-
-COPY . .
-
-
-EXPOSE ${NODE_PORT}
-CMD [ "npm", "start" ]
+WORKDIR /usr/share/nginx/html
+COPY site .
