@@ -20,7 +20,10 @@ jobs:
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: docker login -u c49903384900adbc2e1d08f82e923b97c37a69866790f4c27f1b9af453b9b3b9 -p c49903384900adbc2e1d08f82e923b97c37a69866790f4c27f1b9af453b9b3b9 registry.digitalocean.com
 
       - name: Push image to DigitalOcean Container Registry
         run: docker push registry.iactorling.pl/asb/static-example
