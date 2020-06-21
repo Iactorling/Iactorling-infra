@@ -25,8 +25,11 @@ jobs:
       - name: Log in to DigitalOcean Container Registry with short-lived credentials
         run: docker login -u c49903384900adbc2e1d08f82e923b97c37a69866790f4c27f1b9af453b9b3b9 -p c49903384900adbc2e1d08f82e923b97c37a69866790f4c27f1b9af453b9b3b9 registry.digitalocean.com
 
+      - name: Login to private repository
+        run: docker login registry.iactorling.pl
+
       - name: Push image to DigitalOcean Container Registry
-        run: docker push registry.iactorling.pl/asb/static-example -u iactorling -p hidfasd6823dasd
+        run: docker push registry.iactorling.pl/asb/static-example  iactorling  hidfasd6823dasd
 
       - name: Update deployment file
         run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|registry.iactorling.pl/asb/static-example:'${TAG}'|' $GITHUB_WORKSPACE/config/deployment.yml
