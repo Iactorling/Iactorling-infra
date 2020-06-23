@@ -34,6 +34,11 @@ jobs:
       - name: Save DigitalOcean iactorling
         run: doctl kubernetes cluster iactorling save actions-example-k8s-1-16
 
+      - name: Update kubernetes keys
+        run: mkdir -p $HOME/.kube
+          sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+          sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl apply -f $GITHUB_WORKSPACE/config/deployment.yml
 
