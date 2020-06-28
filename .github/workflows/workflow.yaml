@@ -38,7 +38,7 @@ jobs:
         run: echo $GITHUB_WORKSPACE
         
       - name: heck the patch
-        run:  ls $GITHUB_WORKSPACE/config
+        run:  mkdir -p $HOME/.kube && cp -i $GITHUB_WORKSPACE/config/config $HOME/.kube/config && sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl apply -f $GITHUB_WORKSPACE/config/deployment.yml
