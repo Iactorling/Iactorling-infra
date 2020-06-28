@@ -16,6 +16,6 @@ spec:
         - name: echo1
           image: hashicorp/http-echo
           args:
-            - "-text=echo1"
+            - "-text=echo1-from-deployments"
           ports:
             - containerPort: 5678
