@@ -16,3 +16,21 @@ contexts:
 current-context: do-fra1-iactorling
 kind: Config
 preferences: {}
+users:
+- name: do-fra1-iactorling-admin
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - kubernetes
+      - cluster
+      - kubeconfig
+      - exec-credential
+      - --version=v1beta1
+      - --context=default
+      - 609ec845-b54f-4e47-8722-bf9fda06c570
+      command: doctl
+      env: null
+- name: do-fra1-k8s-1-16-6-do-0-fra1-1581418902641-admin
+  user:
+    token: a70a1fe80b30d72de262081b84b822def46f30b88021e31d54b49e885add45c7
