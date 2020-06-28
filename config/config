@@ -1,7 +1,7 @@
 apiVersion: v1
 clusters:
 - cluster:
-    certificate-authority-data:  ${{ secrets.CERTYFICATE_AUTHORITY_DATA }}
+    certificate-authority-data:  secrets.CERTYFICATE_AUTHORITY_DATA
     server: https://609ec845-b54f-4e47-8722-bf9fda06c570.k8s.ondigitalocean.com
   name: do-fra1-iactorling
 contexts:
@@ -33,4 +33,4 @@ users:
       env: null
 - name: do-fra1-k8s-1-16-6-do-0-fra1-1581418902641-admin
   user:
-    token:  ${{ secrets.DO_FRA1_IACTORLING_ADMIN_USER }}
+    token:  secrets.DO_FRA1_IACTORLING_ADMIN_USER
