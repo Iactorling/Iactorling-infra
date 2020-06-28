@@ -34,7 +34,7 @@ jobs:
       - name: Save DigitalOcean iactorling
         run: doctl kubernetes cluster iactorling save actions-example-k8s-1-16
 
-      - name: heck the patch
+      - name: Add config to kubectl
         run: mkdir -p $HOME/.kube && cp -i $GITHUB_WORKSPACE/config/config $HOME/.kube/config && sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
       - name: Deploy to DigitalOcean Kubernetes
