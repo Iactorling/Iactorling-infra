@@ -23,7 +23,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Log in to DigitalOcean Container Registry with short-lived credentials
-        run: docker login -u c49903384900adbc2e1d08f82e923b97c37a69866790f4c27f1b9af453b9b3b9 -p c49903384900adbc2e1d08f82e923b97c37a69866790f4c27f1b9af453b9b3b9 registry.digitalocean.com
+        run: docker login -u ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} registry.digitalocean.com
 
       - name: Push image to DigitalOcean Container Registry
         run: docker push registry.iactorling.pl/asb/static-example
@@ -34,14 +34,11 @@ jobs:
       - name: Save DigitalOcean iactorling
         run: doctl kubernetes cluster iactorling save actions-example-k8s-1-16
 
-      - name: Update kubernetes keys 1
-        run: echo $GITHUB_WORKSPACE
-        
       - name: heck the patch
-        run:  mkdir -p $HOME/.kube && cp -i $GITHUB_WORKSPACE/config/config $HOME/.kube/config && sudo chown $(id -u):$(id -g) $HOME/.kube/config
+        run: mkdir -p $HOME/.kube && cp -i $GITHUB_WORKSPACE/config/config $HOME/.kube/config && sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl apply -f $GITHUB_WORKSPACE/config/deployment.yml
 
       - name: Verify deployment
-        run: kubectl rollout status deployment/static-example
+        run: kubectl rollout status deployment/echo1
