@@ -38,7 +38,7 @@ jobs:
         run: echo $GITHUB_WORKSPACE
         
       - name: heck the patch
-        run:  kubeadm init
+        run:  export KUBERNETES_MASTER=http://MasterIP:8080
 
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl apply -f $GITHUB_WORKSPACE/config/deployment.yml
