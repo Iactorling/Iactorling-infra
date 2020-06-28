@@ -36,6 +36,9 @@ jobs:
 
       - name: Update kubernetes keys 1
         run: echo $GITHUB_WORKSPACE
+        
+      - name: heck the patch
+        run: pwd
 
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl apply -f $GITHUB_WORKSPACE/config/deployment.yml
