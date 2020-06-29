@@ -1,0 +1,31 @@
+ingress:
+  enabled: true
+  hosts:
+    - registry.iactorling.pl
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: "30720m"
+  tls:
+    - secretName: docker-registry-prod
+      hosts:
+        - registry.iactorling.pl
+
+storage: s3
+
+secrets:
+  htpasswd: ""
+
+  s3:
+    accessKey: "OKMVIBTJBHKYN7O6DU5Y"
+    secretKey: "e0ZZTSfAy3nDLeIkQVCWAlxtAxlKcEu835IShpoafi8"
+
+s3:
+  region: ams3
+  regionEndpoint: ams3.digitaloceanspaces.com
+  secure: true
+  bucket: iactorling
+
+image:
+  repository: karolsz/registry
+  tag: dev
