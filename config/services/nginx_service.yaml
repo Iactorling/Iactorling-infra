@@ -1,13 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-main-php
+  name: nginx
   labels:
     tier: backend
 spec:
   selector:
-    app: backend-main-php
+    app: nginx
     tier: backend
   ports:
     - protocol: TCP
-      port: 9000
+      port: 80
+  externalIPs:
+    - 68.183.240.166

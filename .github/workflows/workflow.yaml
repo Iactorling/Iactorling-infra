@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Update SHA
-        run: echo $GITHUB_SHA > 1
+        run: echo $GITHUB_SHA > $GITHUB_WORKSPACE/site/_meta
 
       - name: Build container image
         run: docker build -t registry.iactorling.pl/asb/static-example:$(echo $GITHUB_SHA | head -c7) .
