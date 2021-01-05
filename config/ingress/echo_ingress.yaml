@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: echo-ingress
+  labels:
+    tier: backend
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - echo1.iactorling.pl
+      secretName: echo-tls
+  rules:
+    - host: echo1.iactorling.pl
+      http:
+        paths:
+          - backend:
+              serviceName: nginx
+              servicePort: 80
