@@ -1,0 +1,31 @@
+ingress:
+  enabled: true
+  hosts:
+    - registry.karol.org.pl
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: "30720m"
+  tls:
+    - secretName: docker-registry-prod
+      hosts:
+        - registry.karol.org.pl
+
+storage: s3
+
+secrets:
+  htpasswd: ""
+
+  s3:
+    accessKey: "RFTNGVKPUQGPTI5RUMPO"
+    secretKey: "CflAc7sh7dhR7wrucr0ebxAZPYho7yjs9iV3GSlmH2U"
+
+s3:
+  region: fra1
+  regionEndpoint: fra1.digitaloceanspaces.com
+  secure: true
+  bucket: registry
+
+image:
+  repository: karolsz/registry
+  tag: dev
